@@ -5,7 +5,7 @@ import java.awt.event.*;
 
 public class Foothill
 {
-    /*
+    
    public static void main (String[] args)
    {
 
@@ -48,7 +48,7 @@ public class Foothill
       System.out.println(shweet4.toString());
 
    }
-     */
+     /*
 
 
 
@@ -119,6 +119,6 @@ class TranspoFrame  extends JFrame
             return;
         }
     } // end inner class SeeFriendListener
-
+*/
 
 }
