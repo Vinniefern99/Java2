@@ -5,6 +5,17 @@ import java.awt.*;
    
 public class Foothill 
 {
+    //Phase1 code is at the bottom, commented out
+    //Phase2 code at the top, uncommented
+    
+    
+    
+    
+    
+    
+    //Phase 1 Code:
+    
+    
    // static for the 57 icons and their corresponding labels
    // normally we would not have a separate label for each card, but
    // if we want to display all at once using labels, we need to.
