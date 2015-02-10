@@ -1,124 +1,86 @@
 package foothill;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
-
-public class Foothill
+   
+public class Foothill 
 {
-    
-   public static void main (String[] args)
+   // static for the 57 icons and their corresponding labels
+   // normally we would not have a separate label for each card, but
+   // if we want to display all at once using labels, we need to.
+   
+   static int NUM_CARD_IMAGES = 57; // 52 + 4 jokers + 1 back-of-card image
+   static Icon[] icon = new ImageIcon[NUM_CARD_IMAGES];
+   static JLabel[] labels = new JLabel[NUM_CARD_IMAGES];
+
+   // for assisting with conversions:
+   static String cardlValsConvertAssist = "23456789TJQKAX";
+   static String suitValsConvertAssist = "CDHS";
+   
+   static void loadCardIcons()
    {
+      String imageFileName;
+      int intSuit, intVal;
 
-      Message message1 = new Message();
-      Message message2 = new Message("Vince","This is my notice of resignation. I guess it has to be longer.");
-      Message message3 = new Message(null, null);
-      Message message4 = new Message("", "");
-
-      System.out.println(message1.toString());
-      System.out.println(message2.toString());
-      System.out.println(message3.toString());
-      System.out.println(message4.toString());
-
-      System.out.println();
-      System.out.println();
-
-      Email email1 = new Email();
-      Email email2 = new Email("Jeffers", "Hello this is my long ass message that i want appear in my window.",
-              "jing@trulia.com", "virgil@trulia.com");
-      Email email3 = new Email(null, null, null, null);
-      Email email4 = new Email("", "", "", "");
-
-      System.out.println(email1.toString());
-      System.out.println(email2.toString());
-      System.out.println(email3.toString());
-      System.out.println(email4.toString());
-
-      System.out.println();
-      System.out.println();
-
-      Shweet shweet1 = new Shweet();
-      Shweet shweet2 = new Shweet("Jeffers", "Hello this is my long ass message that i want appear in my window.",
-              "chris_h12a@ver");
-      Shweet shweet3 = new Shweet(null, null, null);
-      Shweet shweet4 = new Shweet("", "", "");
-
-      System.out.println(shweet1.toString());
-      System.out.println(shweet2.toString());
-      System.out.println(shweet3.toString());
-      System.out.println(shweet4.toString());
-
+      for (intSuit = 0; intSuit < 4; intSuit++)
+         for (intVal = 0; intVal < 14; intVal++ )
+         {
+            // card image files stored in Foothill/images folder with names like
+            // "AC.gif", "3H.gif","XD.gif", etc.
+            imageFileName = "images/"
+                  + turnIntIntoCardValueChar(intVal) 
+                  + turnIntIntoCardSuitChar(intSuit)
+                  + ".gif";
+           icon[intSuit*14 + intVal] = new ImageIcon(imageFileName);
+         }
+      imageFileName = "images/BK.gif";
+      icon[icon.length - 1] = new ImageIcon(imageFileName);
    }
-     /*
+   
+   // turns 0 - 13 into 'A', '2', '3', ... 'Q', 'K', 'X'
+   static char turnIntIntoCardValueChar(int k)
+   {
+   
+      if ( k < 0 || k > 13)
+         return '?'; 
+      return cardlValsConvertAssist.charAt(k);
+   }
+   
+   // turns 0 - 3 into 'C', 'D', 'H', 'S'
+   static char turnIntIntoCardSuitChar(int k)
+   {
+      if ( k < 0 || k > 3)
+         return '?'; 
+      return suitValsConvertAssist.charAt(k);
+   }
+   
+   public static void main(String[] args)
+   {
+      int k;
+      
+      // prepare the image icon array
+      loadCardIcons();
+      
+      // establish main frame in which program will run
+      JFrame frmMyWindow = new JFrame("Card Room");
+      frmMyWindow.setSize(1150, 650);
+      frmMyWindow.setLocationRelativeTo(null);
+      frmMyWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      
+      // set up layout which will control placement of buttons, etc.
+      FlowLayout layout = new FlowLayout(FlowLayout.CENTER, 5, 20);   
+      frmMyWindow.setLayout(layout);
+      
+      // prepare the image label array
+      JLabel[] labels = new JLabel[NUM_CARD_IMAGES];
+      for (k = 0; k < NUM_CARD_IMAGES; k++)
+         labels[k] = new JLabel(icon[k]);
+      
+      // place your 3 controls into frame
+      for (k = 0; k < NUM_CARD_IMAGES; k++)
+         frmMyWindow.add(labels[k]);
 
-
-
-    public static void main(String[] args)
-    {
-        // establish main frame in which program will run
-        TranspoFrame myTranspoFrame = new TranspoFrame("Transporter Room");
-        myTranspoFrame.setSize(300, 200);
-        myTranspoFrame.setLocationRelativeTo(null);
-        myTranspoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // show everything to the user
-        myTranspoFrame.setVisible(true);
-    }
-}
-
-// TranspoFrame class is derived from JFrame class
-class TranspoFrame  extends JFrame
-{
-    private JButton btnMyButton;
-    private JTextField txtMyTextArea;
-    private JLabel lblMyLabel;
-
-    // TranspoFrame constructor
-    public TranspoFrame(String title)
-    {
-        // pass the title up to the JFrame constructor
-        super(title);
-
-        // set up layout which will control placement of buttons, etc.
-        FlowLayout layout = new FlowLayout(FlowLayout.CENTER, 5, 20); 
-        setLayout(layout);
-
-        // 3 controls: a label, a text field and a button
-        lblMyLabel = new JLabel("Friend's Name: ");
-        txtMyTextArea = new JTextField(10);
-        btnMyButton = new JButton("Press Here to See Friend"); 
-        add(lblMyLabel);
-        add(txtMyTextArea);
-        add(btnMyButton);
-        btnMyButton.addActionListener( new SeeFriendListener() );
-    }
-
-    // inner class for JButton Listener
-    class SeeFriendListener implements ActionListener
-    {
-        // event handler for JButton
-        public void actionPerformed(ActionEvent e)
-        {
-            String strFriendName;
-
-            strFriendName = txtMyTextArea.getText();
-            if (strFriendName != null && strFriendName.length() >=2)
-            {
-                char first = strFriendName.charAt(0);
-                if (Character.isLetter(first))
-                {
-                    // good friend's name.  Now confirm
-                    JOptionPane.showMessageDialog(null, 
-                            "Please wait while we locate " + strFriendName);
-                    return;
-                }
-            }
-
-            // if we fall through they have unacceptable friend's name
-            JOptionPane.showMessageDialog(null, 
-                    "Name must be at least two chars and start with letter.");
-            return;
-        }
-    } // end inner class SeeFriendListener
-*/
-
+      // show everything to the user
+      frmMyWindow.setVisible(true);
+   }
 }
