@@ -101,7 +101,7 @@ public class Card
     private static boolean isValid(char value, Suit suit)
     {
         final char upperValue;
-        final String legalVals = "23456789TJQKA";
+        final String legalVals = "23456789TJQKAX";
 
         upperValue  = Character.toUpperCase(value);
 
