@@ -2,22 +2,25 @@ package foothill;
 
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.border.*
+import javax.swing.border.*;
+import java.util.Random;
 
 public class Foothill 
 {
     //Phase1 code is at the bottom, commented out
     //Phase2 code at the top, uncommented
 
-
-    //Phase 2 Code:
+    //Phase 2 Code -----------------------------------------------------------
 
     static int NUM_CARDS_PER_HAND = 7;
     static int  NUM_PLAYERS = 2;
     static JLabel[] computerLabels = new JLabel[NUM_CARDS_PER_HAND];
     static JLabel[] humanLabels = new JLabel[NUM_CARDS_PER_HAND];  
     static JLabel[] playedCardLabels  = new JLabel[NUM_PLAYERS]; 
-    static JLabel[] playLabelText  = new JLabel[NUM_PLAYERS]; 
+    static JLabel[] playLabelText  = new JLabel[NUM_PLAYERS];
+    static JLabel computerText, youText;
+
+    private static Random random = new Random();
 
     public static void main(String[] args)
     {
@@ -34,63 +37,80 @@ public class Foothill
         // show everything to the user
         myCardTable.setVisible(true);
 
+
         // CREATE LABELS ----------------------------------------------------
-        code goes here ...
+        for (k = 0 ; k < computerLabels.length ; k++)
+        {
+            tempIcon = GUICard.getIconBack();
+            computerLabels[k] = new JLabel(tempIcon);
+        }
+
+        for (k = 0 ; k < playedCardLabels.length ; k++)
+        {
+            tempIcon = GUICard.getIcon(generateRandomCard());
+            playedCardLabels[k] = new JLabel(tempIcon);
+        }
+
+        for (k = 0 ; k < humanLabels.length ; k++)
+        {
+            tempIcon = GUICard.getIcon(generateRandomCard());
+            humanLabels[k] = new JLabel(tempIcon);
+        }
+
+        //extra text panels for table
+        computerText = new JLabel( "Computer", JLabel.CENTER ); 
+        youText = new JLabel( "You", JLabel.CENTER ); 
+
 
         // ADD LABELS TO PANELS -----------------------------------------
-        code goes here ...
+        for (k = 0 ; k < computerLabels.length ; k++)
+            CardTable.pnlComputerTop.add(computerLabels[k]);
 
-        // and two random cards in the play region (simulating a computer/hum ply)
-        code goes here ...
+        for (k = 0 ; k < playedCardLabels.length ; k++)
+            CardTable.pnlMiddleTable.add(playedCardLabels[k]);
+
+        //add text to table
+        CardTable.pnlMiddleTable.add(computerText);
+        CardTable.pnlMiddleTable.add(youText);
+
+        for (k = 0 ; k < humanLabels.length ; k++)
+            CardTable.pnlPlayerBottom.add(humanLabels[k]);
 
         // show everything to the user
         myCardTable.setVisible(true);
+    }
 
-        private static Card generateRandomCard()
-        {
-            char theValue = 
-                    GUICard.turnIntIntoCardValueChar((int)Math.random());
-            char theIntSuit = GUICard.turnIntIntoCardSuitChar((int)Math.random());
-            Card.Suit theCardSuit;
-            Card returnCard;
+    private static Card generateRandomCard()
+    {
+        char theValue = 
+                GUICard.turnIntIntoCardValueChar(random.nextInt(14));
+        char theIntSuit = GUICard.turnIntIntoCardSuitChar(random.nextInt(4));
+        Card.Suit theCardSuit = Card.DEFAULT_SUIT;
+        Card returnCard;
 
-            if (theIntSuit == 'C')
-                theCardSuit = Card.Suit.clubs;
-            if (theIntSuit == 'D')
-                theCardSuit = Card.Suit.diamonds;
-            if (theIntSuit == 'H')
-                theCardSuit = Card.Suit.hearts;
-            if (theIntSuit == 'S')
-                theCardSuit = Card.Suit.spades;
+        if (theIntSuit == 'C')
+            theCardSuit = Card.Suit.clubs;
+        if (theIntSuit == 'D')
+            theCardSuit = Card.Suit.diamonds;
+        if (theIntSuit == 'H')
+            theCardSuit = Card.Suit.hearts;
+        if (theIntSuit == 'S')
+            theCardSuit = Card.Suit.spades;
 
-            returnCard = new Card(theValue,theCardSuit);
-            return returnCard;
-
-
-        }
+        returnCard = new Card(theValue,theCardSuit);
+        return returnCard;
     }
 
 
 
+    /*
 
-
-
-
-
-
-
-
-
-
-
-    //Phase 1 Code:
+    //Phase 1 Code -----------------------------------------------------------
 
     // static for the 57 icons and their corresponding labels
     // normally we would not have a separate label for each card, but
     // if we want to display all at once using labels, we need to.
 
-
-    /*
    static int NUM_CARD_IMAGES = 57; // 52 + 4 jokers + 1 back-of-card image
    static Icon[] icon = new ImageIcon[NUM_CARD_IMAGES];
    static JLabel[] labels = new JLabel[NUM_CARD_IMAGES];
@@ -107,8 +127,8 @@ public class Foothill
       for (intSuit = 0; intSuit < 4; intSuit++)
          for (intVal = 0; intVal < 14; intVal++ )
          {
-            // card image files stored in Foothill/images folder with names like
-            // "AC.gif", "3H.gif","XD.gif", etc.
+            //card image files stored in Foothill/images folder with names like
+            //"AC.gif", "3H.gif","XD.gif", etc.
             imageFileName = "images/"
                   + turnIntIntoCardValueChar(intVal) 
                   + turnIntIntoCardSuitChar(intSuit)
@@ -138,7 +158,6 @@ public class Foothill
 
    public static void main(String[] args)
    {
-
       int k;
 
       // prepare the image icon array
@@ -168,4 +187,6 @@ public class Foothill
    }
 
      */
+
 }
+
