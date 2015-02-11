@@ -10,12 +10,12 @@ public class GUICard
     private static String cardlValsConvertAssist = "23456789TJQKAX";
     private static String suitValsConvertAssist  = "CDHS";
     private static Card.Suit suitConvertAssist[] =
-        {
+    {
         Card.Suit.clubs,
         Card.Suit.diamonds,
         Card.Suit.hearts,
         Card.Suit.spades
-        };
+    };
 
     public static void loadCardIcons()
     {
@@ -66,7 +66,7 @@ public class GUICard
 
     private static int valueAsInt(Card card)
     {
-        char value = card.getValue();
+        final char value = card.getValue();
         int k;
 
         for (k = 0 ; k < cardlValsConvertAssist.length() ; k++)
@@ -80,7 +80,7 @@ public class GUICard
 
     private static int suitAsInt(Card card)
     {
-        Card.Suit theSuit = card.getSuit();
+        final Card.Suit theSuit = card.getSuit();
         int k;
 
         for (k = 0 ; k < suitConvertAssist.length ; k++ )

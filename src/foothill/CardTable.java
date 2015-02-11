@@ -12,7 +12,6 @@ public class CardTable extends JFrame
     static int DEFAULT_NUM_CARDS = 7;
     static int DEFAULT_NUM_PLAYERS = 2;
 
-
     private int numCardsPerHand;
     private int numPlayers;
 

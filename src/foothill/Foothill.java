@@ -28,8 +28,8 @@ public class Foothill
         Icon tempIcon;
 
         // establish main frame in which program will run
-        CardTable myCardTable 
-        = new CardTable("CS 1B CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS);
+        final CardTable myCardTable = new 
+                CardTable("CS 1B CardTable", NUM_CARDS_PER_HAND, NUM_PLAYERS);
         myCardTable.setSize(800, 600);
         myCardTable.setLocationRelativeTo(null);
         myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,9 +82,10 @@ public class Foothill
 
     private static Card generateRandomCard()
     {
-        char theValue = 
+        final char theValue = 
                 GUICard.turnIntIntoCardValueChar(random.nextInt(14));
-        char theIntSuit = GUICard.turnIntIntoCardSuitChar(random.nextInt(4));
+        final char theIntSuit = 
+                GUICard.turnIntIntoCardSuitChar(random.nextInt(4));
         Card.Suit theCardSuit = Card.DEFAULT_SUIT;
         Card returnCard;
 
