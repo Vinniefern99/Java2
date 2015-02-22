@@ -214,147 +214,147 @@ class Automaton
     }
 }
 
-*/
+ */
 
 public class Automaton
 {
-   // class constants
-   public final static int MAX_DISPLAY_WIDTH = 121;
-   
-   // private members
-   private boolean rules[];  // allocate rules[8] in constructor!
-   private String thisGen;   // same here
-   String extremeBit; // bit, "*" or " ", implied everywhere "outside"
-   int displayWidth;  // an odd number so it can be perfectly centered
-   
-   // constructor
-   public Automaton(int new_rule)
-   {
-      rules = new boolean[8];
-      if ( !SetRule(new_rule) )
-         SetRule(0);
-      resetFirstGen();
-      setDisplayWidth(79);
-   }
- 
-   public void resetFirstGen()
-   {
-      // create a virtual 1 in a sea of 0s:   "         *         "
-      thisGen = "*";
-      extremeBit = " ";
-   }
-   
-   // mutators
-   public boolean SetRule(int new_rule)
-   {
-      int bit_to_examine, k, bit_result;
+    // class constants
+    public final static int MAX_DISPLAY_WIDTH = 121;
 
-      // optional filtering
-      if (new_rule < 0 || new_rule > 255)
-         return false;
-      
-      // nothing to filter
-      for (k = 0; k < 8; k++)
-      {
-         bit_to_examine = 1 << k;
-         bit_result = bit_to_examine & new_rule;
-         if ( bit_result != 0 )
-            rules[k] = true;
-         else
-            rules[k] = false;
-      }
-      return true;
-   }
-   
-   public boolean setDisplayWidth(int width)
-   {
-      // check range
-      if (width < 1 || width > MAX_DISPLAY_WIDTH)
-         return false;
+    // private members
+    private boolean rules[];  // allocate rules[8] in constructor!
+    private String thisGen;   // same here
+    String extremeBit; // bit, "*" or " ", implied everywhere "outside"
+    int displayWidth;  // an odd number so it can be perfectly centered
 
-      // require odd parity
-      if (width % 2 == 0)
-         return false;
+    // constructor
+    public Automaton(int new_rule)
+    {
+        rules = new boolean[8];
+        if ( !SetRule(new_rule) )
+            SetRule(0);
+        resetFirstGen();
+        setDisplayWidth(79);
+    }
 
-      displayWidth = width;
-      return true;
-   }
+    public void resetFirstGen()
+    {
+        // create a virtual 1 in a sea of 0s:   "         *         "
+        thisGen = "*";
+        extremeBit = " ";
+    }
 
-   public String toStringCurrentGen()
-   {
-      int padAmount;  // amount that we have to add to thisGen to give it full length
-      // of displayLength
-      int k, amountToTruncEachSide;
-      String displayString = "";
+    // mutators
+    public boolean SetRule(int new_rule)
+    {
+        int bit_to_examine, k, bit_result;
 
-      padAmount = displayWidth - thisGen.length();
+        // optional filtering
+        if (new_rule < 0 || new_rule > 255)
+            return false;
 
-      if (padAmount >= 0)
-      {
-         // we need to add padAmount/2 of extremeBit on each side of thisGen
-         // to satisfy display string
-         for (k = 0; k < padAmount/2; k++)
-            displayString += extremeBit;
-         displayString += thisGen;
-         for (k = 0; k < padAmount/2; k++)
-            displayString += extremeBit;
-      }
-      else
-      {
-         // truncate thisGen on both ends by padAmount/2 to fit display string
-         amountToTruncEachSide = -(padAmount/2);  // or absolute value pad/2
+        // nothing to filter
+        for (k = 0; k < 8; k++)
+        {
+            bit_to_examine = 1 << k;
+            bit_result = bit_to_examine & new_rule;
+            if ( bit_result != 0 )
+                rules[k] = true;
+            else
+                rules[k] = false;
+        }
+        return true;
+    }
 
-         for (k = 0; k < displayWidth; k++)
-            displayString += thisGen.charAt(amountToTruncEachSide + k);
-      }
+    public boolean setDisplayWidth(int width)
+    {
+        // check range
+        if (width < 1 || width > MAX_DISPLAY_WIDTH)
+            return false;
 
-      return displayString;
-   }
-   
-   public void propagateNewGeneration()
-   {
-      int tripletVal;
-      String nextGen = "";
-      boolean extremeBitIsOne;
-   
-      // prepare by padding left and right with two extreme bits each
-      thisGen = extremeBit + extremeBit + thisGen + extremeBit + extremeBit ;
+        // require odd parity
+        if (width % 2 == 0)
+            return false;
 
-      // we have added 4 chars to the existing generation.  Now apply rule,
-      // which will shorten by 1 char on each side, with a net increase of
-      // 2 chars.
+        displayWidth = width;
+        return true;
+    }
 
-      // all the positions of nextGen[k] are determined by
-      // thisGen[k-1], thisGen[k] and thisGen[k+1]
-      // according to the rule set
-      
-      // according to the rule set
-      for (int k = 1; k < thisGen.length()-1; k++)
-      {
-         // turn the three positions into an int, e.g., "** " -> 6
-         tripletVal = 0;
-         if (thisGen.charAt(k-1) == '*')
-            tripletVal+=4;
-         if (thisGen.charAt(k) == '*')
-            tripletVal+=2;
-         if (thisGen.charAt(k+1) == '*')
-            tripletVal+=1;
-   
-         // now use the rule set to get the "child" of these three
-         nextGen += rules[tripletVal] ? "*" : " ";
-      }
+    public String toStringCurrentGen()
+    {
+        int padAmount;  // amount that we have to add to thisGen to give it full length
+        // of displayLength
+        int k, amountToTruncEachSide;
+        String displayString = "";
 
-      // extremeBit must be recomputed.  
-      // first the boolean that answers the question
-      if (extremeBit == " ")
-         extremeBitIsOne = rules[0];
-      else
-         extremeBitIsOne = rules[7];
+        padAmount = displayWidth - thisGen.length();
 
-      // and convert the boolean to the new character, blank or *:
-      extremeBit = extremeBitIsOne ? "*" : " ";
+        if (padAmount >= 0)
+        {
+            // we need to add padAmount/2 of extremeBit on each side of thisGen
+            // to satisfy display string
+            for (k = 0; k < padAmount/2; k++)
+                displayString += extremeBit;
+            displayString += thisGen;
+            for (k = 0; k < padAmount/2; k++)
+                displayString += extremeBit;
+        }
+        else
+        {
+            // truncate thisGen on both ends by padAmount/2 to fit display string
+            amountToTruncEachSide = -(padAmount/2);  // or absolute value pad/2
 
-      // and finally pass the torch to the new generation
-      thisGen = nextGen;
-   }
+            for (k = 0; k < displayWidth; k++)
+                displayString += thisGen.charAt(amountToTruncEachSide + k);
+        }
+
+        return displayString;
+    }
+
+    public void propagateNewGeneration()
+    {
+        int tripletVal;
+        String nextGen = "";
+        boolean extremeBitIsOne;
+
+        // prepare by padding left and right with two extreme bits each
+        thisGen = extremeBit + extremeBit + thisGen + extremeBit + extremeBit ;
+
+        // we have added 4 chars to the existing generation.  Now apply rule,
+        // which will shorten by 1 char on each side, with a net increase of
+        // 2 chars.
+
+        // all the positions of nextGen[k] are determined by
+        // thisGen[k-1], thisGen[k] and thisGen[k+1]
+        // according to the rule set
+
+        // according to the rule set
+        for (int k = 1; k < thisGen.length()-1; k++)
+        {
+            // turn the three positions into an int, e.g., "** " -> 6
+            tripletVal = 0;
+            if (thisGen.charAt(k-1) == '*')
+                tripletVal+=4;
+            if (thisGen.charAt(k) == '*')
+                tripletVal+=2;
+            if (thisGen.charAt(k+1) == '*')
+                tripletVal+=1;
+
+            // now use the rule set to get the "child" of these three
+            nextGen += rules[tripletVal] ? "*" : " ";
+        }
+
+        // extremeBit must be recomputed.  
+        // first the boolean that answers the question
+        if (extremeBit == " ")
+            extremeBitIsOne = rules[0];
+        else
+            extremeBitIsOne = rules[7];
+
+        // and convert the boolean to the new character, blank or *:
+        extremeBit = extremeBitIsOne ? "*" : " ";
+
+        // and finally pass the torch to the new generation
+        thisGen = nextGen;
+    }
 }

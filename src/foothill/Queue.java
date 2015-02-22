@@ -1,0 +1,58 @@
+package foothill;
+
+//import java.util.*;
+
+//Class Queue ---------------------------------------
+public class Queue
+{
+  // pointers to first and last elements in Queue
+  private Node head, tail;
+
+  // constructor
+  public Queue()
+  {
+      head = null;
+      tail = null;
+  }
+
+  public void add(Node newNode)
+  {   
+      if (newNode == null) 
+          return;   // emergency return
+      newNode.next = head;
+      head = newNode;
+      
+      //top.next = newNode;
+      //newNode = top;
+  }  
+
+  public Node remove()
+  {
+      Node temp;
+
+      temp = head;
+      if (head != null)
+      {
+          head = head.next; 
+          temp.next = null; // don't give client access to queue!
+      }
+      return temp;      
+  }
+
+  // console display
+  public String toString()
+  {
+      Node p;
+      String returnString = "";
+
+      // Display all the nodes in the stack
+      for( p = head; p != null; p = p.next )
+          if (returnString == "")
+              returnString = p.toString();
+          else
+              returnString = returnString + " -> " + p.toString();
+      
+      return returnString;
+  }
+}
+
