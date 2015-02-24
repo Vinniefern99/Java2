@@ -10,6 +10,17 @@ public class Foothill
 {
     public static void main (String[] args)
     {
+        Card card1 = new Card('3',Card.Suit.diamonds);
+        Card card2 = new Card('4',Card.Suit.hearts);
+        Card card3 = new Card('5',Card.Suit.clubs);
+        
+        CardQueue queue1 = new CardQueue();
+        
+        queue1.addCard(card1);
+        queue1.addCard(card2);
+        queue1.addCard(card3);
+        
+        /*
         Queue q = new Queue();
         Node p;
 
@@ -25,6 +36,9 @@ public class Foothill
         //    System.out.println(p.toString());
         System.out.println(q.toString());
         
-        
+        q.remove();
+        System.out.println();
+        System.out.println(q.toString());
+        */
     }
 }
