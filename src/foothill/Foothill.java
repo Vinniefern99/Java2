@@ -10,6 +10,8 @@ public class Foothill
 {
     public static void main (String[] args)
     {
+        
+      
         Card card1 = new Card('3',Card.Suit.diamonds);
         Card card2 = new Card('4',Card.Suit.hearts);
         Card card3 = new Card('5',Card.Suit.clubs);
@@ -32,11 +34,13 @@ public class Foothill
         queue1.removeCard();
 
         /*
+        
+        
         Queue q = new Queue();
         Node p;
 
         // build the stack
-        for (int k = 0; k < 5; k++)
+        for (int k = 0; k < 3; k++)
         {
             p = new Node();
             q.add(p);
@@ -47,6 +51,18 @@ public class Foothill
         //    System.out.println(p.toString());
         System.out.println(q.toString());
 
+        q.remove();
+        System.out.println();
+        System.out.println(q.toString());
+        
+        q.remove();
+        System.out.println();
+        System.out.println(q.toString());
+        
+        q.remove();
+        System.out.println();
+        System.out.println(q.toString());
+        
         q.remove();
         System.out.println();
         System.out.println(q.toString());

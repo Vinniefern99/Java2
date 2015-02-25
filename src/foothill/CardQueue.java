@@ -1,7 +1,6 @@
 package foothill;
 
-import java.lang.Exception;
-import javax.swing.JOptionPane;
+//import java.lang.Exception;
 
 class CardQueue extends Queue
 {
@@ -17,24 +16,14 @@ class CardQueue extends Queue
         super.add(theCardNode);
     }
 
-    public Card removeCard() throws QueueEmptyException
+    public Card removeCard() //throws QueueEmptyException
     {
-        try
-        {     
-            // remove a node
-            CardNode theCardNode = (CardNode)remove();
-            return theCardNode.getData();
-        }
-        catch (Exception ex)
-        {
-            JOptionPane.showMessageDialog(null, 
-                    "Queue is Empty", "Exception Window",
-                    JOptionPane.ERROR_MESSAGE); 
-        }
-        return new Card();
+        CardNode theCardNode = (CardNode)remove();
+        return theCardNode.getData();
+
     }
 }
 
-class QueueEmptyException extends NullPointerException
-{
-}
+//class QueueEmptyException extends NullPointerException
+//{
+//}
