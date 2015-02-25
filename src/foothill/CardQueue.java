@@ -1,9 +1,10 @@
 package foothill;
 
+import java.lang.Exception;
+import javax.swing.JOptionPane;
+
 class CardQueue extends Queue
 {
-    public static final Card QUEUE_EMPTY = new Card();
-
     public void addCard(Card theCard)
     {
         // don't allow pushing of Float.MIN_VALUE 
@@ -16,18 +17,24 @@ class CardQueue extends Queue
         super.add(theCardNode);
     }
 
-    public Card removeCard()
+    public Card removeCard() throws QueueEmptyException
     {
-        // pop a node
-        CardNode theCardNode = (CardNode)remove();
-        if (theCardNode == null)
-            return QUEUE_EMPTY;
-        else
+        try
+        {     
+            // remove a node
+            CardNode theCardNode = (CardNode)remove();
             return theCardNode.getData();
+        }
+        catch (Exception ex)
+        {
+            JOptionPane.showMessageDialog(null, 
+                    "Queue is Empty", "Exception Window",
+                    JOptionPane.ERROR_MESSAGE); 
+        }
+        return new Card();
     }
-    
-    public String toString()
-    {
-        
-    }
+}
+
+class QueueEmptyException extends NullPointerException
+{
 }

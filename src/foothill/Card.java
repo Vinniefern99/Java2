@@ -88,7 +88,7 @@ public class Card
         stringValue = String.valueOf(value);
         stringSuit = String.valueOf(suit);
 
-        returnValue = stringValue + " of " + stringSuit;
+        returnValue = "(" + stringValue + " of " + stringSuit + ")";
 
         if (!this.errorFlag)
         {
