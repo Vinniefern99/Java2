@@ -10,8 +10,6 @@ public class Foothill
 {
     public static void main (String[] args)
     {
-        
-      
         Card card1 = new Card('3',Card.Suit.diamonds);
         Card card2 = new Card('4',Card.Suit.hearts);
         Card card3 = new Card('5',Card.Suit.clubs);

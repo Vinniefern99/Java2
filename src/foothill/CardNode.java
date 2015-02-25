@@ -21,7 +21,7 @@ public class CardNode extends Node
         return myCard;
     }
 
-    // overriding show()
+    // overriding toString()
     public String toString()
     {
         return myCard.toString();

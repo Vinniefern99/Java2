@@ -35,17 +35,16 @@ public class Queue
     public Node remove() throws QueueEmptyException
     {
         Node temp;
-
         temp = head;
-        
-        if (head == null)
-            throw new QueueEmptyException();
-        //if (head != null)
-        //{
-        head = head.next; 
-        temp.next = null; // don't give client access to queue!
-        //}
-        return temp;      
+
+        if (head != null)
+        {
+            head = head.next; 
+            temp.next = null; // don't give client access to queue!
+            return temp; 
+        }
+        else
+            throw new QueueEmptyException();    
     }
 
     // console display
