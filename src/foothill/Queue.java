@@ -47,7 +47,6 @@ public class Queue
             throw new QueueEmptyException();    
     }
 
-    // console display
     public String toString()
     {
         Node p;

@@ -3,7 +3,6 @@ package foothill;
 //Class Node  ----------------------------------
 public class Node
 {
-
     // data (we allow Queue class public access)
     protected Node next;
 
@@ -16,7 +15,7 @@ public class Node
     // console display
     public String toString()
     {
-        String returnString =  "(generic node)";
+        final String returnString =  "(generic node)";
 
         return returnString;
     }

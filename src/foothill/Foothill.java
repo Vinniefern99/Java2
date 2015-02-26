@@ -17,8 +17,11 @@ public class Foothill
         CardQueue queue1 = new CardQueue();
 
         queue1.addCard(card1);
+        System.out.println(queue1.toString());
         queue1.addCard(card2);
+        System.out.println(queue1.toString());
         queue1.addCard(card3);
+        System.out.println(queue1.toString());
 
 
         System.out.println(queue1.toString());
@@ -32,8 +35,8 @@ public class Foothill
         queue1.removeCard();
 
         /*
-        
-        
+
+
         Queue q = new Queue();
         Node p;
 
@@ -52,15 +55,15 @@ public class Foothill
         q.remove();
         System.out.println();
         System.out.println(q.toString());
-        
+
         q.remove();
         System.out.println();
         System.out.println(q.toString());
-        
+
         q.remove();
         System.out.println();
         System.out.println(q.toString());
-        
+
         q.remove();
         System.out.println();
         System.out.println(q.toString());
