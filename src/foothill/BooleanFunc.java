@@ -1,6 +1,6 @@
 package foothill;
 
-public class BooleanFunc
+public class BooleanFunc implements Cloneable
 {
     public static int MAX_TABLE_FOR_CLASS = 65536;
     public static int DEFAULT_TABLE_SIZE = 16;
@@ -13,7 +13,6 @@ public class BooleanFunc
     public BooleanFunc()
     {
         this(DEFAULT_TABLE_SIZE, false);
-
     }
 
     public BooleanFunc(int tableSize)
@@ -27,10 +26,10 @@ public class BooleanFunc
             this.evalReturnIfError = true;
         else
             this.evalReturnIfError = false;
-        
+
         if (tableSize < 0 || tableSize > 65536)
             truthTable = new boolean[DEFAULT_TABLE_SIZE];
-        
+
         truthTable = new boolean[tableSize];
     }
 
@@ -41,16 +40,15 @@ public class BooleanFunc
             return false;
         if (inputs.length > truthTable.length)
             return false;
-        
+
         int k, currentInt;
 
         for (k = 0 ; k < inputs.length ; k++)
         {
             currentInt = inputs[k];
             truthTable[currentInt] = truthValue;
-
         }
-        
+
         return true;
     }
 
@@ -62,7 +60,7 @@ public class BooleanFunc
             return false;
         if (inputsThatProduceTrue.length > truthTable.length)
             return false;
-        
+
         //System.out.println(inputsThatProduceTrue.length);
         //System.out.println(truthTable.length);
 
@@ -71,7 +69,7 @@ public class BooleanFunc
         for (k = 0 ; k < inputsThatProduceTrue.length ; k++)
         {
             currentInt = inputsThatProduceTrue[k];
-            
+
             if (currentInt >= 0 && currentInt < truthTable.length)
                 truthTable[currentInt] = true;
         }
@@ -93,7 +91,7 @@ public class BooleanFunc
         for (k = 0 ; k < inputsThatProduceFalse.length ; k++)
         {
             currentInt = inputsThatProduceFalse[k];
-            
+
             if (currentInt >= 0 && currentInt < truthTable.length)
                 truthTable[currentInt] = false;
         }
@@ -129,5 +127,20 @@ public class BooleanFunc
             truthTable[k] = value;
     }
 
+    public Object clone() throws CloneNotSupportedException
+    {
+        int row;
+
+        // always do this first -
+        BooleanFunc newObject = (BooleanFunc)super.clone();
+
+        //now do the immediate class member objects
+        newObject.truthTable = new boolean[truthTable.length];
+        for ( row = 0; row < truthTable.length; row++ )
+            newObject.truthTable[row] = this.truthTable[row];
+
+
+        return newObject;
+    }
 
 }
