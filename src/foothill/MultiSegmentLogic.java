@@ -2,22 +2,21 @@ package foothill;
 
 public class MultiSegmentLogic implements Cloneable 
 {
+    public static int DEFAULT_SEGS = 0;
     public static int MAX_NUM_SEGS = 1000;
 
     protected int numSegs;
     protected BooleanFunc[] segs;
 
-
     public MultiSegmentLogic()
     {
-        this(0);
+        this(DEFAULT_SEGS);
     }
 
     public MultiSegmentLogic(int numSegs)
     {
         this.numSegs = numSegs;
         segs = new BooleanFunc[numSegs];
-
     }
 
     //mutators

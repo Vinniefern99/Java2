@@ -18,6 +18,8 @@ public class SevenSegmentLogic extends MultiSegmentLogic
         return segs[seg].getState();
     }
 
+    //There's no way to create for loops to make this shorter, 
+    //I tried a number of ways and it didn't work.
     void loadBooleanFuncs() throws CloneNotSupportedException
     {
         // ---------------------
@@ -57,6 +59,5 @@ public class SevenSegmentLogic extends MultiSegmentLogic
 
         bFunc6.setTruthTableUsingFalse(gIntArray);
         setSegment(6, bFunc6);
-
     }
 }

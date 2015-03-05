@@ -61,9 +61,6 @@ public class BooleanFunc implements Cloneable
         if (inputsThatProduceTrue.length > truthTable.length)
             return false;
 
-        //System.out.println(inputsThatProduceTrue.length);
-        //System.out.println(truthTable.length);
-
         int k, currentInt;
 
         for (k = 0 ; k < inputsThatProduceTrue.length ; k++)
@@ -109,14 +106,12 @@ public class BooleanFunc implements Cloneable
 
         state = truthTable[input];
         return state;
-
     }
 
     public boolean getState()
     {
         return state;
     }
-
 
     //private helper methods
     private void setTableToConstant(boolean value)

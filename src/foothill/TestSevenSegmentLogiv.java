@@ -4,7 +4,7 @@ public class TestSevenSegmentLogiv
 {
     public static void main(String[] args) throws CloneNotSupportedException
     {
- 
+
         int inputX, k;
         SevenSegmentLogic my7Seg, myCopy;
 
@@ -28,7 +28,5 @@ public class TestSevenSegmentLogiv
                 System.out.print( myCopy.getValOfSeg( k ) + " | ");
             System.out.println();
         }
-
     }
-
 }
