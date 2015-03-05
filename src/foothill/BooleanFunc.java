@@ -1,6 +1,6 @@
 package foothill;
 
-public class BooleanFunc //implements Cloneable
+public class BooleanFunc implements Cloneable
 {
     public static int MAX_TABLE_FOR_CLASS = 65536;
     public static int DEFAULT_TABLE_SIZE = 16;

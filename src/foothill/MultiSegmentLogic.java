@@ -38,7 +38,6 @@ public class MultiSegmentLogic implements Cloneable
     }
 
     public boolean setSegment(int segNum, BooleanFunc funcForThisSeg) 
-            throws CloneNotSupportedException
     {
         if (segNum < 0 || segNum > segs.length)
             return false;
@@ -50,7 +49,6 @@ public class MultiSegmentLogic implements Cloneable
         }
         catch (CloneNotSupportedException ex)
         {
-            System.out.println(ex);
             segs[segNum] = new BooleanFunc();
             return false;
         }
@@ -80,9 +78,4 @@ public class MultiSegmentLogic implements Cloneable
 
         return newObject;
     }
-
-}
-
-class SetSegmentFailException extends NullPointerException
-{
 }
