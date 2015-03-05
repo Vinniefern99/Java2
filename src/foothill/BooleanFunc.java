@@ -127,7 +127,7 @@ public class BooleanFunc implements Cloneable
         int row;
 
         // always do this first 
-        BooleanFunc newObject = (BooleanFunc)super.clone();
+        final BooleanFunc newObject = (BooleanFunc)super.clone();
 
         //now do the immediate class member objects
         newObject.truthTable = new boolean[truthTable.length];

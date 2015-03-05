@@ -66,7 +66,7 @@ public class MultiSegmentLogic implements Cloneable
         int row;
 
         // always do this first -
-        MultiSegmentLogic newObject = (MultiSegmentLogic)super.clone();
+        final MultiSegmentLogic newObject = (MultiSegmentLogic)super.clone();
 
         //now do the immediate class member objects
         newObject.segs = new BooleanFunc[numSegs];

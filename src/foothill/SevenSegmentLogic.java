@@ -23,21 +23,21 @@ public class SevenSegmentLogic extends MultiSegmentLogic
     void loadBooleanFuncs() throws CloneNotSupportedException
     {
         // ---------------------
-        int[] aIntArray = new int[]{1, 4, 11, 13};
-        int[] bIntArray = new int[]{5, 6, 11, 12, 14, 15};
-        int[] cIntArray = new int[]{2, 12, 14, 15};
-        int[] dIntArray = new int[]{1, 4, 7, 10, 15};
-        int[] eIntArray = new int[]{1, 3, 4, 5, 7, 9};
-        int[] fIntArray = new int[]{1, 2, 3, 13};
-        int[] gIntArray = new int[]{0, 1, 7, 12};
+        final int[] aIntArray = new int[]{1, 4, 11, 13};
+        final int[] bIntArray = new int[]{5, 6, 11, 12, 14, 15};
+        final int[] cIntArray = new int[]{2, 12, 14, 15};
+        final int[] dIntArray = new int[]{1, 4, 7, 10, 15};
+        final int[] eIntArray = new int[]{1, 3, 4, 5, 7, 9};
+        final int[] fIntArray = new int[]{1, 2, 3, 13};
+        final int[] gIntArray = new int[]{0, 1, 7, 12};
 
-        BooleanFunc bFunc0 = new BooleanFunc();
-        BooleanFunc bFunc1 = new BooleanFunc();
-        BooleanFunc bFunc2 = new BooleanFunc();
-        BooleanFunc bFunc3 = new BooleanFunc();
-        BooleanFunc bFunc4 = new BooleanFunc();
-        BooleanFunc bFunc5 = new BooleanFunc();
-        BooleanFunc bFunc6 = new BooleanFunc();
+        final BooleanFunc bFunc0 = new BooleanFunc();
+        final BooleanFunc bFunc1 = new BooleanFunc();
+        final BooleanFunc bFunc2 = new BooleanFunc();
+        final BooleanFunc bFunc3 = new BooleanFunc();
+        final BooleanFunc bFunc4 = new BooleanFunc();
+        final BooleanFunc bFunc5 = new BooleanFunc();
+        final BooleanFunc bFunc6 = new BooleanFunc();
 
         bFunc0.setTruthTableUsingFalse(aIntArray);
         setSegment(0, bFunc0);
