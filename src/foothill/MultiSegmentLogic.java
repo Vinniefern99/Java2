@@ -43,9 +43,17 @@ public class MultiSegmentLogic implements Cloneable
         if (segNum < 0 || segNum > segs.length)
             return false;
 
-        segs[segNum] = (BooleanFunc)funcForThisSeg.clone();
-
-        return true;
+        try
+        {
+            segs[segNum] = (BooleanFunc)funcForThisSeg.clone();
+            return true;
+        }
+        catch (CloneNotSupportedException ex)
+        {
+            System.out.println(ex);
+            segs[segNum] = new BooleanFunc();
+            return false;
+        }
     }
 
     public void eval(int input)
@@ -68,8 +76,13 @@ public class MultiSegmentLogic implements Cloneable
         for ( row = 0; row < numSegs; row++ )
             newObject.segs[row] = this.segs[row];
 
+        newObject.segs = this.segs;
 
         return newObject;
     }
 
+}
+
+class SetSegmentFailException extends NullPointerException
+{
 }

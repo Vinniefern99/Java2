@@ -1,6 +1,6 @@
 package foothill;
 
-public class BooleanFunc implements Cloneable
+public class BooleanFunc //implements Cloneable
 {
     public static int MAX_TABLE_FOR_CLASS = 65536;
     public static int DEFAULT_TABLE_SIZE = 16;
@@ -131,7 +131,7 @@ public class BooleanFunc implements Cloneable
     {
         int row;
 
-        // always do this first -
+        // always do this first 
         BooleanFunc newObject = (BooleanFunc)super.clone();
 
         //now do the immediate class member objects
@@ -139,8 +139,9 @@ public class BooleanFunc implements Cloneable
         for ( row = 0; row < truthTable.length; row++ )
             newObject.truthTable[row] = this.truthTable[row];
 
+        newObject.state = this.state;
+        newObject.evalReturnIfError = this.evalReturnIfError;
 
         return newObject;
     }
-
 }
