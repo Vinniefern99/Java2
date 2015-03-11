@@ -25,7 +25,7 @@ public class SevenSegmentImage implements Cloneable
     public void clearImage() 
     {
         int j, k;
-        
+
         //I'm not sure if this is right...check it!
         for (j = 0 ; j <= bottomRow; j++)
             for (k = 0 ; k <= rightCol; k++)
@@ -36,36 +36,36 @@ public class SevenSegmentImage implements Cloneable
     {
         //String charOptions = "0123456789AaBbCcDdEeFfGg";
         String charOptions = "AaBbCcDdEeFfGg";
-        
+
         if (segment == ' ' || charOptions.indexOf(segment) < 0)
             return false;
-          
+
         switch (segment)
         {
-            case 'A':
-            case 'a':   drawHorizontal(topRow);
-                        break;
-            case 'B':
-            case 'b':   drawVertical(rightCol, topRow, midRow);
-                        break;
-            case 'C':
-            case 'c':   drawVertical(rightCol, midRow, bottomRow);
-                        break;
-            case 'D':
-            case 'd':   drawHorizontal(bottomRow);
-                        break;
-            case 'E':
-            case 'e':   drawVertical(leftCol, midRow, bottomRow);
-                        break;
-            case 'F':
-            case 'f':   drawVertical(leftCol, topRow, midRow);
-                        break;
-            case 'G':
-            case 'g':   drawHorizontal(midRow);
-                        break;
-            default: return false; //if no match. shouldn't ever happen
+        case 'A':
+        case 'a':   drawHorizontal(topRow);
+        break;
+        case 'B':
+        case 'b':   drawVertical(rightCol, topRow, midRow);
+        break;
+        case 'C':
+        case 'c':   drawVertical(rightCol, midRow, bottomRow);
+        break;
+        case 'D':
+        case 'd':   drawHorizontal(bottomRow);
+        break;
+        case 'E':
+        case 'e':   drawVertical(leftCol, midRow, bottomRow);
+        break;
+        case 'F':
+        case 'f':   drawVertical(leftCol, topRow, midRow);
+        break;
+        case 'G':
+        case 'g':   drawHorizontal(midRow);
+        break;
+        default: return false; //if no match. shouldn't ever happen
         }
-        
+
         return true;
     }
 
@@ -84,7 +84,7 @@ public class SevenSegmentImage implements Cloneable
         bottomRow = height - 1;
         rightCol = width - 1;
         midRow = (height - 1) / 2;
-        
+
         allocateCleanArray(); 
 
         return true;
@@ -100,7 +100,7 @@ public class SevenSegmentImage implements Cloneable
                     System.out.print(" ");
                 else
                     System.out.print("*");
-                    
+
             }
             System.out.println();
         }           
