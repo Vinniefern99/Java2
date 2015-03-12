@@ -4,7 +4,7 @@ public class SevenSegmentLogic extends MultiSegmentLogic
 {
     public static int NUM_SEGS = 7;
 
-    public SevenSegmentLogic() throws CloneNotSupportedException
+    public SevenSegmentLogic() 
     {
         super(NUM_SEGS);
         loadBooleanFuncs();
@@ -20,7 +20,7 @@ public class SevenSegmentLogic extends MultiSegmentLogic
 
     //There's no way to create for loops to make this shorter, 
     //I tried a number of ways and it didn't work.
-    void loadBooleanFuncs() throws CloneNotSupportedException
+    void loadBooleanFuncs() 
     {
         // ---------------------
         final int[] aIntArray = new int[]{1, 4, 11, 13};
@@ -28,7 +28,7 @@ public class SevenSegmentLogic extends MultiSegmentLogic
         final int[] cIntArray = new int[]{2, 12, 14, 15};
         final int[] dIntArray = new int[]{1, 4, 7, 10, 15};
         final int[] eIntArray = new int[]{1, 3, 4, 5, 7, 9};
-        final int[] fIntArray = new int[]{1, 2, 3, 13};
+        final int[] fIntArray = new int[]{1, 2, 3, 7, 13};
         final int[] gIntArray = new int[]{0, 1, 7, 12};
 
         final BooleanFunc bFunc0 = new BooleanFunc();

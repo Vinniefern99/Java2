@@ -1,4 +1,4 @@
-package Module8;
+package foothill;
 
 public class SevenSegmentImage implements Cloneable 
 {

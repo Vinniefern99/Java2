@@ -22,11 +22,6 @@ public class BooleanFunc implements Cloneable
 
     public BooleanFunc(int tableSize, boolean evalReturnIfError)
     {
-        if (evalReturnIfError)
-            this.evalReturnIfError = true;
-        else
-            this.evalReturnIfError = false;
-
         if (tableSize < 0 || tableSize > 65536)
             truthTable = new boolean[DEFAULT_TABLE_SIZE];
 

@@ -4,15 +4,18 @@ public class MultiSegmentLogic  implements Cloneable
 {
     protected BooleanFunc[] segs;
 
-    public MultiSegmentLogic() {
+    public MultiSegmentLogic() 
+    {
         this(0);
     }
 
-    public MultiSegmentLogic(int numSegs) {
+    public MultiSegmentLogic(int numSegs) 
+    {
         setNumSegs(numSegs);
     }
 
-    public boolean setNumSegs(int numSegs) {
+    public boolean setNumSegs(int numSegs) 
+    {
         if (numSegs < 0)
             return false;
 
@@ -23,26 +26,30 @@ public class MultiSegmentLogic  implements Cloneable
         return true;
     }
 
-    public boolean setSegment(int segNum, BooleanFunc funcForThisSeg) {
+    public boolean setSegment(int segNum, BooleanFunc funcForThisSeg) 
+    {
         if (!validSeg( segNum))
             return false;
 
         // cloning object so we can pass in anon/temporary BooleanFunc
         try {
             segs[segNum] = (BooleanFunc)funcForThisSeg.clone();
-        } catch ( CloneNotSupportedException e) {
+        } catch ( CloneNotSupportedException e) 
+        {
             return false;
         }
         return true;
     }
 
-    public void eval(int input) {
+    public void eval(int input) 
+    {
         for (int k = 0; k < segs.length; k++)
             segs[k].eval(input);
     }
 
     // deep copy required
-    public Object clone() throws CloneNotSupportedException {
+    public Object clone() throws CloneNotSupportedException 
+    {
         // array will temporarily point to original object
         MultiSegmentLogic newMsl = (MultiSegmentLogic) super.clone();
 
@@ -52,9 +59,9 @@ public class MultiSegmentLogic  implements Cloneable
         return newMsl;
     }
 
-
     // helpers
-    protected boolean validSeg(int seg) {
+    protected boolean validSeg(int seg) 
+    {
         return seg >= 0 && seg < segs.length;
     }
 }

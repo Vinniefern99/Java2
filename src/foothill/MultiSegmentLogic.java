@@ -36,6 +36,7 @@ public class MultiSegmentLogic implements Cloneable
         return true;
     }
 
+    
     public boolean setSegment(int segNum, BooleanFunc funcForThisSeg) 
     {
         if (segNum < 0 || segNum > segs.length)
