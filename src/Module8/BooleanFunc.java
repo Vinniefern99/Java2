@@ -2,7 +2,7 @@ package Module8;
 
 public class BooleanFunc implements Cloneable
 {
-    public static final int MAX_TABLE_FOR_CLASS = 65536; // that's 16 binary inputs
+    public static final int MAX_TABLE_FOR_CLASS = 65536; 
     public static final int DEFAULT_TABLE_SIZE = 16;
 
     //truthtable is a 1-D array
@@ -31,7 +31,7 @@ public class BooleanFunc implements Cloneable
         this.state = evalReturnIfError;
     }
 
-    // mutators, acessors
+    // mutators, accessors
     public boolean setTruthTableUsingTrue(int[] inputsThatProduceTrue) 
     {
         setTableToConstant(false);
@@ -50,7 +50,7 @@ public class BooleanFunc implements Cloneable
 
         for (int i = 0; i < tableLocs.length; i++) 
         {
-            int j = tableLocs[i];
+            final int j = tableLocs[i];
             if (j >= 0 && j < truthTable.length)
                 truthTable[j] = truthValue;
         }
@@ -72,9 +72,11 @@ public class BooleanFunc implements Cloneable
     // deep copy required
     public Object clone() throws CloneNotSupportedException 
     {
+        // always do this first 
         // array will temporarily point to original object
         BooleanFunc newBf = (BooleanFunc) super.clone();
 
+        //now do the immediate class member objects
         newBf.truthTable = new boolean[truthTable.length];
         for (int k = 0; k < truthTable.length; k++)
             newBf.truthTable[k] = this.truthTable[k];

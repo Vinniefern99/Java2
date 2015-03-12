@@ -51,28 +51,35 @@ public class SevenSegmentImage implements Cloneable
 
         switch (segment)
         {
-        case 'A':
-        case 'a':   drawHorizontal(topRow);
-        break;
-        case 'B':
-        case 'b':   drawVertical(rightCol, topRow, midRow);
-        break;
-        case 'C':
-        case 'c':   drawVertical(rightCol, midRow, bottomRow);
-        break;
-        case 'D':
-        case 'd':   drawHorizontal(bottomRow);
-        break;
-        case 'E':
-        case 'e':   drawVertical(leftCol, midRow, bottomRow);
-        break;
-        case 'F':
-        case 'f':   drawVertical(leftCol, topRow, midRow);
-        break;
-        case 'G':
-        case 'g':   drawHorizontal(midRow);
-        break;
-        default: return false; //if no match. shouldn't ever happen
+            case 'A':
+            case 'a':   
+                drawHorizontal(topRow);
+                break;
+            case 'B':
+            case 'b':   
+                drawVertical(rightCol, topRow, midRow);
+                break;
+            case 'C':
+            case 'c':   
+                drawVertical(rightCol, midRow, bottomRow);
+                break;
+            case 'D':
+            case 'd':   
+                drawHorizontal(bottomRow);
+                break;
+            case 'E':
+            case 'e':   
+                drawVertical(leftCol, midRow, bottomRow);
+                break;
+            case 'F':
+            case 'f':   
+                drawVertical(leftCol, topRow, midRow);
+                break;
+            case 'G':
+            case 'g':   
+                drawHorizontal(midRow);
+                break;
+            default: return false; //if no match. shouldn't ever happen
         }
 
         return true;
@@ -114,7 +121,7 @@ public class SevenSegmentImage implements Cloneable
     public Object clone() throws CloneNotSupportedException 
     {
         // array will temporarily point to original object
-        SevenSegmentImage newSsi = (SevenSegmentImage) super.clone();
+        final SevenSegmentImage newSsi = (SevenSegmentImage) super.clone();
 
         newSsi.data = new boolean[rightCol+1][bottomRow+1];
         for (int j = 0 ; j <= bottomRow; j++)

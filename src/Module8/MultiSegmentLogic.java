@@ -14,6 +14,7 @@ public class MultiSegmentLogic  implements Cloneable
         setNumSegs(numSegs);
     }
 
+    //mutators
     public boolean setNumSegs(int numSegs) 
     {
         if (numSegs < 0)
@@ -34,7 +35,8 @@ public class MultiSegmentLogic  implements Cloneable
         // cloning object so we can pass in anon/temporary BooleanFunc
         try {
             segs[segNum] = (BooleanFunc)funcForThisSeg.clone();
-        } catch ( CloneNotSupportedException e) 
+        } 
+        catch ( CloneNotSupportedException e) 
         {
             return false;
         }
@@ -47,7 +49,6 @@ public class MultiSegmentLogic  implements Cloneable
             segs[k].eval(input);
     }
 
-    // deep copy required
     public Object clone() throws CloneNotSupportedException 
     {
         // array will temporarily point to original object

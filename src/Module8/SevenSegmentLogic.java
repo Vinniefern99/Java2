@@ -20,28 +20,28 @@ public class SevenSegmentLogic extends MultiSegmentLogic
     private void loadAllFuncs() 
     {
         // define all in terms of on/true
-        int aIntArray[] = { 0, 2, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15 };
-        int bIntArray[] = { 0, 1, 2, 3, 4, 7, 8, 9, 10, 13 };
-        int cIntArray[] = { 0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13 };
-        int dIntArray[] = { 0, 2, 3, 5, 6, 8, 9, 11, 12, 13, 14 };
-        int eIntArray[] = { 0, 2, 6, 8, 10, 11, 12, 13, 14, 15 };
-        int fIntArray[] = { 0, 4, 5, 6, 8, 9, 10, 11, 12, 14, 15 };
-        int gIntArray[] = { 2, 3, 4, 5, 6, 8, 9, 10, 11, 13, 14, 15 };
+        final int aIntArray[] = { 0, 2, 3, 5, 6, 7, 8, 9, 10, 12, 14, 15 };
+        final int bIntArray[] = { 0, 1, 2, 3, 4, 7, 8, 9, 10, 13 };
+        final int cIntArray[] = { 0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13 };
+        final int dIntArray[] = { 0, 2, 3, 5, 6, 8, 9, 11, 12, 13, 14 };
+        final int eIntArray[] = { 0, 2, 6, 8, 10, 11, 12, 13, 14, 15 };
+        final int fIntArray[] = { 0, 4, 5, 6, 8, 9, 10, 11, 12, 14, 15 };
+        final int gIntArray[] = { 2, 3, 4, 5, 6, 8, 9, 10, 11, 13, 14, 15 };
 
         // set error pattern to "E" through second parameter
-        BooleanFunc a = new BooleanFunc(16, true);
+        final BooleanFunc a = new BooleanFunc(16, true);
         a.setTruthTableUsingTrue(aIntArray);
-        BooleanFunc b = new BooleanFunc(16, false);
+        final BooleanFunc b = new BooleanFunc(16, false);
         b.setTruthTableUsingTrue(bIntArray);
-        BooleanFunc c = new BooleanFunc(16, false);
+        final BooleanFunc c = new BooleanFunc(16, false);
         c.setTruthTableUsingTrue(cIntArray);
-        BooleanFunc d = new BooleanFunc(16, true);
+        final BooleanFunc d = new BooleanFunc(16, true);
         d.setTruthTableUsingTrue(dIntArray);
-        BooleanFunc e = new BooleanFunc(16, true);
+        final BooleanFunc e = new BooleanFunc(16, true);
         e.setTruthTableUsingTrue(eIntArray);
-        BooleanFunc f = new BooleanFunc(16, true);
+        final BooleanFunc f = new BooleanFunc(16, true);
         f.setTruthTableUsingTrue(fIntArray);
-        BooleanFunc g = new BooleanFunc(16, true);
+        final BooleanFunc g = new BooleanFunc(16, true);
         g.setTruthTableUsingTrue(gIntArray);
 
         // this block could be combined with above; done separately for clarity
