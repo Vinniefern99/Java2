@@ -7,7 +7,7 @@ public class FHsdTreeNode<E>
     protected FHsdTreeNode<E> firstChild, sib, prev;
     protected E data;
     protected FHsdTreeNode<E> myRoot;  // needed to test for certain error
-    
+
     //to I need to initialize this to false?
     protected boolean deleted = false; // true if the node has been removed from the tree
 
