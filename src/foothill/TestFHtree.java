@@ -1,4 +1,4 @@
-package Module_9;
+package foothill;
 
 import java.text.*;
 import java.util.*;
