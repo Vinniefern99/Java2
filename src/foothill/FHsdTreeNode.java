@@ -1,4 +1,4 @@
-package Module_9;
+package foothill;
 //file FHgTreeNode.java --------------------------------------
 
 public class FHsdTreeNode<E>
@@ -8,6 +8,8 @@ public class FHsdTreeNode<E>
     protected FHsdTreeNode<E> firstChild, sib, prev;
     protected E data;
     protected FHsdTreeNode<E> myRoot;  // needed to test for certain error
+    
+    protected boolean deleted; // true if the node has been removed from the tree
 
     public FHsdTreeNode( E d, FHsdTreeNode<E> sb, FHsdTreeNode<E> chld, FHsdTreeNode<E> prv )
     {

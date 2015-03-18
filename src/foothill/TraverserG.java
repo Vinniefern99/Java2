@@ -1,4 +1,4 @@
-package Module_9;
+package foothill;
 
 public interface TraverserG<E>
 {
