@@ -6,6 +6,9 @@ public class FHsdTree<E> implements Cloneable
     private int pSize;
     FHsdTreeNode<E> mRoot;
 
+    //used by collectGarbage()
+    boolean returnVal;
+
     public FHsdTree() 
     { 
         clear(); 
@@ -28,7 +31,8 @@ public class FHsdTree<E> implements Cloneable
 
     public void clear() 
     { 
-        mSize = 0; mRoot = null; 
+        mSize = 0; 
+        mRoot = null; 
     }
 
     public FHsdTreeNode<E> find(E x) 
@@ -41,9 +45,16 @@ public class FHsdTree<E> implements Cloneable
         return remove(mRoot, x); 
     }
 
+    //I have some boolean logic here in order to have collectGarbage()
+    //return the correct value. I tried doing this in the overloaded
+    //method and it got very hairy.
     public boolean collectGarbage()
     {
-        return collectGarbage(mRoot,0); 
+        returnVal = false;
+        final boolean temp = collectGarbage(mRoot,0);
+        returnVal = false;
+        pSize = mSize;
+        return temp;
     }
 
     public void  display()  
@@ -51,13 +62,12 @@ public class FHsdTree<E> implements Cloneable
         display(mRoot, 0); 
     }
 
-
     public void  displayPhysical()  
     { 
         displayPhysical(mRoot, 0); 
     }
 
-    public < F extends Traverser< ? super E > > 
+    public <F extends Traverser<? super E>> 
     void traverse(F func)  
     { 
         traverse(func, mRoot, 0); 
@@ -70,21 +80,21 @@ public class FHsdTree<E> implements Cloneable
         {
             if (treeNode != null)
                 return null; // error something's fishy.  treeNode can't right
-            mRoot = new FHsdTreeNode<E>(x, null, null, null);
+            mRoot = new FHsdTreeNode<E>(x, null, null, null, false);
             mRoot.myRoot = mRoot;
             mSize = 1;
             pSize = 1;
             return mRoot;
         }
 
-        if (treeNode == null || treeNode.deleted == true)
-            return null; // error inserting into non_null tree with a null parent
+        if (treeNode == null || treeNode.deleted)
+            return null; // error inserting into non_null tree w/ null parent
         if (treeNode.myRoot != mRoot)
             return null;  // silent error, node does not belong to this tree
 
-        // push this node into the head of the sibling list; adjust prev pointers
+        //push node into the head of the sibling list; adjust prev pointers
         FHsdTreeNode<E> newNode = new FHsdTreeNode<E>(x, 
-                treeNode.firstChild, null, treeNode, mRoot);  // sb, chld, prv, rt
+                treeNode.firstChild, null, treeNode, mRoot, false);  
         treeNode.firstChild = newNode;
         if (newNode.sib != null)
             newNode.sib.prev = newNode;
@@ -103,7 +113,7 @@ public class FHsdTree<E> implements Cloneable
         if (root.data.equals(x))
             return root;
 
-        // otherwise, recurse.  don't process sibs if this was the original call
+        // otherwise, recurse. don't process sibs if this was the original call
         if ( level > 0 && (retval = find(root.sib, x, level)) != null )
             return retval;
 
@@ -146,7 +156,10 @@ public class FHsdTree<E> implements Cloneable
             calculateMSize(root.sib, level);
 
         if (root.deleted)
+        {
+            mSize--;
             return;
+        }
         else
             calculateMSize(root.firstChild, ++level);
     }
@@ -176,7 +189,7 @@ public class FHsdTree<E> implements Cloneable
 
 
     boolean collectGarbage(FHsdTreeNode<E> root, int level)
-    {
+    {        
         if (root == null)
             return false;
 
@@ -190,11 +203,14 @@ public class FHsdTree<E> implements Cloneable
             collectGarbage(root.sib, level);
 
         if (root.deleted)
-            removeNode(root);
-        else
-            collectGarbage(root.firstChild, ++level);
+        {
+            returnVal = true;
+            removeNode(root); 
+        }
 
-        return true;
+        collectGarbage(root.firstChild, ++level);
+
+        return returnVal;
     }
 
     public Object clone() throws CloneNotSupportedException
@@ -217,13 +233,10 @@ public class FHsdTree<E> implements Cloneable
 
         // does not set myRoot which must be done by caller
         newNode = new FHsdTreeNode<E>
-        (
-                root.data, 
-                cloneSubtree(root.sib), cloneSubtree(root.firstChild),
-                null
-                );
+        (root.data, cloneSubtree(root.sib), cloneSubtree(root.firstChild), 
+                null, false);
 
-        // the prev pointer is set by parent recursive call ... this is the code:
+        // the prev pointer is set by parent recursive call, this is the code:
         if (newNode.sib != null)
             newNode.sib.prev = newNode;
         if (newNode.firstChild != null)
@@ -270,7 +283,7 @@ public class FHsdTree<E> implements Cloneable
         // recursive step done here
         if (!treeNode.deleted)
             display( treeNode.firstChild, level + 1 );
-        
+
         if (level > 0 )
             display( treeNode.sib, level );
     }

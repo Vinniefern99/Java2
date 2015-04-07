@@ -77,9 +77,11 @@ public class Foothill2
         System.out.println("------- Testing Sizes (compare with above) -------- \n");
         System.out.println("virtual (soft) size: " + sceneTree.size()  );
         System.out.println("physiical (hard) size: " + sceneTree.sizePhysical()  );
-
+        
         System.out.println("------------ Collecting Garbage ---------------- \n");
         System.out.println("found soft-deleted nodes? " 
+                + sceneTree.collectGarbage()  );
+        System.out.println("immediate collect again? " 
                 + sceneTree.collectGarbage()  );
         System.out.println("immediate collect again? " 
                 + sceneTree.collectGarbage()  );
@@ -89,10 +91,26 @@ public class Foothill2
         sceneTree.displayPhysical();
 
         System.out.println("Semi-deleted tree empty? " + sceneTree.empty() + "\n");
+        
+        System.out.println("------- Testing Sizes-------- \n");
+        System.out.println("virtual (soft) size: " + sceneTree.size()  );
+        System.out.println("physiical (hard) size: " + sceneTree.sizePhysical()  );
+        
         sceneTree.remove("room");
+        
+        System.out.println("------- Testing Sizes-------- \n");
+        System.out.println("virtual (soft) size: " + sceneTree.size()  );
+        System.out.println("physiical (hard) size: " + sceneTree.sizePhysical()  );
+        
+        
         System.out.println("Completely-deleted tree empty? " + sceneTree.empty() 
                 + "\n");
 
+        System.out.println("------- Testing Sizes-------- \n");
+        System.out.println("virtual (soft) size: " + sceneTree.size()  );
+        System.out.println("physiical (hard) size: " + sceneTree.sizePhysical()  );
+        
         sceneTree.display();
+        sceneTree.displayPhysical();
     }
 }
