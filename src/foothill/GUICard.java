@@ -28,7 +28,7 @@ public class GUICard
         for (intSuit = 0; intSuit < 4; intSuit++)
             for (intVal = 0; intVal < 14; intVal++ )
             {
-                // card image files stored in Foothill
+                // card image files stored in TestTree
                 //images folder with names like
                 // "AC.gif", "3H.gif","XD.gif", etc.
                 imageFileName = "images/"

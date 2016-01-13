@@ -46,7 +46,7 @@ public class Transporter
     
      
      // assumes "surfer_dude.jpg" is stored under java project folder
-     // (Often named "Foothill"), in a subfolder named "images".  
+     // (Often named "TestTree"), in a subfolder named "images".  
      // Hint:  create an "images" folder under in your project directory, 
      //  then copy "surfer_dude.jpg" there.
      

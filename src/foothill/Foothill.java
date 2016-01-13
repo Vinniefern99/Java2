@@ -59,7 +59,7 @@ public class Foothill
 
 
 /* Assignment 6
-public class Foothill
+public class TestTree
 {
     public static void main (String[] args)
     {
