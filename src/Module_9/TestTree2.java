@@ -4,7 +4,7 @@ import java.text.*;
 import java.util.*;
 
 
-public class Foothill2
+public class TestTree2
 {
     // -------  main --------------
     public static void main(String[] args) throws Exception
