@@ -1,4 +1,4 @@
-package Module8;
+package Module_8;
 
 //Card class --------------------------------------------------------------------
 public class Card implements Comparable<Card>
